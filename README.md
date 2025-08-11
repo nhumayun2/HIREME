@@ -1,6 +1,6 @@
 # HireMe - Job Posting Platform Backend
 
-This is the backend system for "HireMe", a job platform where companies can post jobs and job seekers can apply. [cite_start]The system is built with a focus on role-based access control, file uploads, and a mock payment system[cite: 7].
+This is the backend system for "HireMe", a job platform where companies can post jobs and job seekers can apply. The system is built with a focus on role-based access control, file uploads, and a mock payment system.
 
 ## Table of Contents
 
@@ -15,36 +15,36 @@ This is the backend system for "HireMe", a job platform where companies can post
 
 ## Features
 
--   [cite_start]**Role-Based Authentication**: Secure routes using JWT with distinct roles for Admins, Employees, and Job Seekers[cite: 9, 21, 22].
--   [cite_start]**Job Management**: Employees can post, edit, and delete jobs for their company[cite: 16]. [cite_start]Admins can manage all jobs[cite: 15].
--   [cite_start]**Job Application**: Job Seekers can apply for jobs by uploading their CV and completing a mock payment of 100 Taka[cite: 17, 26, 31].
--   [cite_start]**File Upload**: CVs are uploaded in PDF or DOCX format with a file size limit of 5MB[cite: 26, 28].
--   [cite_start]**Application Management**: Employees can view applicants and accept or reject them[cite: 16].
--   [cite_start]**Admin Panel (Backend-Only)**: Admins have full control to view all users, jobs, and applications[cite: 15, 39].
+-   **Role-Based Authentication**: Secure routes using JWT with distinct roles for Admins, Employees, and Job Seekers.
+-   **Job Management**: Employees can post, edit, and delete jobs for their company. Admins can manage all jobs.
+-   **Job Application**: Job Seekers can apply for jobs by uploading their CV and completing a mock payment of 100 Taka.
+-   **File Upload**: CVs are uploaded in PDF or DOCX format with a file size limit of 5MB.
+-   **Application Management**: Employees can view applicants and accept or reject them.
+-   **Admin Panel (Backend-Only)**: Admins have full control to view all users, jobs, and applications.
 
 ## Tech Stack
 
--   [cite_start]**Language**: TypeScript [cite: 50]
--   [cite_start]**Framework**: Express.js [cite: 51]
--   [cite_start]**Database**: MongoDB [cite: 52]
--   [cite_start]**Authentication**: JWT (JSON Web Tokens) [cite: 53]
--   [cite_start]**File Upload**: Multer [cite: 54]
--   [cite_start]**Validation**: Zod [cite: 56]
--   [cite_start]**Environment Configs**: dotenv [cite: 57]
+-   **Language**: TypeScript
+-   **Framework**: Express.js
+-   **Database**: MongoDB
+-   **Authentication**: JWT (JSON Web Tokens)
+-   **File Upload**: Multer
+-   **Validation**: Zod
+-   **Environment Configs**: dotenv
 
 ## Roles & Permissions
 
 -   **Admin**:
-    -   [cite_start]Manage all users (create/update/delete)[cite: 15].
-    -   [cite_start]Manage jobs[cite: 15].
-    -   [cite_start]See company analytics[cite: 15].
+    -   Manage all users (create/update/delete).
+    -   Manage jobs.
+    -   See company analytics.
 -   **Employee (Recruiter)**:
-    -   [cite_start]Post, edit, and delete jobs for their company[cite: 16].
-    -   [cite_start]View applicants and accept or reject them[cite: 16].
+    -   Post, edit, and delete jobs for their company.
+    -   View applicants and accept or reject them.
 -   **Job Seeker**:
-    -   [cite_start]View jobs[cite: 17].
-    -   [cite_start]Apply by uploading CV + paying 100 Taka[cite: 17].
-    -   [cite_start]View their application history[cite: 48].
+    -   View jobs.
+    -   Apply by uploading CV + paying 100 Taka.
+    -   View their application history.
 
 ## Setup & Installation
 
@@ -98,9 +98,9 @@ All endpoints are prefixed with `/api`.
 
 1.  A **Job Seeker** authenticates and obtains a JWT token.
 2.  They send a `POST` request to `/api/applications/apply` with the `jobId` and their CV file.
-3.  [cite_start]The backend simulates a successful payment of 100 Taka using a mock service[cite: 30].
-4.  [cite_start]Upon successful "payment", an invoice is stored in the database[cite: 34].
-5.  [cite_start]The application is saved with a `paymentStatus` of `true` and a `status` of `pending`[cite: 33].
+3.  The backend simulates a successful payment of 100 Taka using a mock service.
+4.  Upon successful "payment", an invoice is stored in the database.
+5.  The application is saved with a `paymentStatus` of `true` and a `status` of `pending`.
 
 ## ERD
 
