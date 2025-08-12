@@ -124,9 +124,14 @@ export const getMyApplications = async (req: Request, res: Response) => {
 };
 
 // Update application status (Employees/Admins)
+// Update application status (Employees/Admins)
 export const updateApplicationStatus = async (req: Request, res: Response) => {
   try {
     const { status } = req.body;
+
+    // Log the received status to the console for debugging
+    console.log("Received status:", status);
+
     const application = await Application.findById(
       req.params.applicationId
     ).populate("job");
@@ -143,12 +148,15 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
       req.user!.role !== UserRole.ADMIN &&
       job.postedBy.toString() !== req.user!.id
     ) {
-      return res.status(403).json({
-        success: false,
-        message: "Not authorized to update this application",
-      });
+      return res
+        .status(403)
+        .json({
+          success: false,
+          message: "Not authorized to update this application",
+        });
     }
 
+    // Explicitly check if the provided status is one of the enum values
     if (!Object.values(ApplicationStatus).includes(status)) {
       return res
         .status(400)
@@ -158,12 +166,15 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
     application.status = status;
     await application.save();
 
-    res.status(200).json({
-      success: true,
-      message: `Application status updated to ${status}`,
-      application,
-    });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: `Application status updated to ${status}`,
+        application,
+      });
   } catch (error) {
+    console.error("Error updating application status:", error);
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
