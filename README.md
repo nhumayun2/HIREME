@@ -109,4 +109,4 @@ The ERD (Entity-Relationship Diagram) for the project can be found in the reposi
 
 ## Postman Documentation
 
-The Postman documentation for this API is available [here](https://www.postman.com/collections/your-postman-collection-id).
+The Postman documentation for this API is available [here](https://documenter.getpostman.com/view/46559868/2sB3BGFpD5).
