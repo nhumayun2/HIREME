@@ -1,9 +1,4 @@
 # HireMe - Job Posting Platform Backend
-
-<p align="center">
-  <img src="https://placehold.co/150x150/06b6d4/ffffff?text=HIREME" alt="HireMe Logo">
-</p>
-
 <h1 align="center">HireMe - Job Posting Platform Backend</h1>
 
 <p align="center">
