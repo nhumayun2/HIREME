@@ -5,7 +5,6 @@ import { jobSchema } from "../utils/zodValidation";
 import { z } from "zod";
 import { UserRole } from "../utils/enums";
 
-// Create a new job (for employees/recruiters)
 export const createJob = async (req: Request, res: Response) => {
   try {
     const validatedData = jobSchema.parse(req.body);
@@ -30,7 +29,6 @@ export const createJob = async (req: Request, res: Response) => {
   }
 };
 
-//test new filtering
 export const getJobs = async (req: Request, res: Response) => {
   try {
     const { company, status } = req.query;
@@ -50,7 +48,6 @@ export const getJobs = async (req: Request, res: Response) => {
   }
 };
 
-// Get a single job by ID (for everyone)
 export const getJobById = async (req: Request, res: Response) => {
   try {
     const job = await Job.findById(req.params.id).populate(
@@ -68,7 +65,6 @@ export const getJobById = async (req: Request, res: Response) => {
   }
 };
 
-// Update a job (for employees who posted it, or admins)
 export const updateJob = async (req: Request, res: Response) => {
   try {
     const job = await Job.findById(req.params.id);
@@ -99,7 +95,6 @@ export const updateJob = async (req: Request, res: Response) => {
   }
 };
 
-// Delete a job (for employees who posted it, or admins)
 export const deleteJob = async (req: Request, res: Response) => {
   try {
     const job = await Job.findById(req.params.id);

@@ -6,7 +6,6 @@ import { applicationSchema } from "../utils/zodValidation";
 import { z } from "zod";
 import { UserRole, ApplicationStatus } from "../utils/enums";
 
-// Mock payment service
 const mockPayment = async (amount: number, user: string) => {
   return {
     success: true,
@@ -16,7 +15,6 @@ const mockPayment = async (amount: number, user: string) => {
   };
 };
 
-// Apply for a job (Job Seekers)
 export const applyForJob = async (req: Request, res: Response) => {
   try {
     const { jobId } = req.body;
@@ -40,7 +38,6 @@ export const applyForJob = async (req: Request, res: Response) => {
       });
     }
 
-    // Step 1: Mock Payment
     const paymentResult = await mockPayment(100, jobSeekerId);
 
     if (!paymentResult.success) {
@@ -49,7 +46,6 @@ export const applyForJob = async (req: Request, res: Response) => {
         .json({ success: false, message: "Payment failed" });
     }
 
-    // Step 2: Store invoice
     const newInvoice = new Invoice({
       user: jobSeekerId,
       amount: paymentResult.amount,
@@ -57,7 +53,6 @@ export const applyForJob = async (req: Request, res: Response) => {
     });
     await newInvoice.save();
 
-    // Step 3: Save application
     const newApplication = new Application({
       job: jobId,
       jobSeeker: jobSeekerId,
@@ -80,7 +75,6 @@ export const applyForJob = async (req: Request, res: Response) => {
   }
 };
 
-// Get applications for a specific job (Employees/Admins) with optional filtering
 export const getApplicationsForJob = async (req: Request, res: Response) => {
   try {
     const job = await Job.findById(req.params.jobId);
@@ -117,7 +111,6 @@ export const getApplicationsForJob = async (req: Request, res: Response) => {
   }
 };
 
-// Get a job seeker's application history
 export const getMyApplications = async (req: Request, res: Response) => {
   try {
     const applications = await Application.find({
@@ -131,13 +124,10 @@ export const getMyApplications = async (req: Request, res: Response) => {
   }
 };
 
-// Update application status (Employees/Admins)
-// Update application status (Employees/Admins)
 export const updateApplicationStatus = async (req: Request, res: Response) => {
   try {
     const { status } = req.body;
 
-    // Log the received status to the console for debugging
     console.log("Received status:", status);
 
     const application = await Application.findById(
@@ -150,7 +140,6 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
         .json({ success: false, message: "Application not found" });
     }
 
-    // Check if the user has permission to update the status
     const job = application.job as any;
     if (
       req.user!.role !== UserRole.ADMIN &&
@@ -162,7 +151,6 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
       });
     }
 
-    // Explicitly check if the provided status is one of the enum values
     if (!Object.values(ApplicationStatus).includes(status)) {
       return res
         .status(400)

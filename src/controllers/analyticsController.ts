@@ -4,7 +4,7 @@ import Job from "../models/Job";
 import Application from "../models/Application";
 import mongoose from "mongoose";
 
-// Get platform-wide analytics (Admin only)
+//(Admin only)
 export const getPlatformAnalytics = async (req: Request, res: Response) => {
   try {
     const totalUsers = await User.countDocuments();

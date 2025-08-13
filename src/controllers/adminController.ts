@@ -5,7 +5,7 @@ import { UserRole } from "../utils/enums";
 import { registerSchema } from "../utils/zodValidation";
 import bcrypt from "bcryptjs";
 
-// Get all users (Admin only)
+//(Admin only)
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.find().select("-password");
@@ -15,7 +15,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-// Create a new user (Admin only)
+//(Admin only)
 export const createNewUser = async (req: Request, res: Response) => {
   try {
     const validatedData = registerSchema.parse(req.body);
@@ -42,7 +42,7 @@ export const createNewUser = async (req: Request, res: Response) => {
   }
 };
 
-// Update a user (Admin only)
+//(Admin only)
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(req.params.id);
@@ -77,7 +77,7 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-// Delete a user (Admin only)
+//(Admin only)
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
