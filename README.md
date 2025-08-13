@@ -1,8 +1,9 @@
-# HireMe - Job Posting Platform Backend
 <h1 align="center">HireMe - Job Posting Platform Backend</h1>
 
 <p align="center">
-  
+  <a href="https://hireme-4pqk.onrender.com">
+    <img src="https://img.shields.io/badge/Deployed%20on-Render-464A57?style=for-the-badge&logo=render" alt="Deployed on Render">
+  </a>
   <a href="https://documenter.getpostman.com/view/46559868/2sB3BGFpD5">
     <img src="https://img.shields.io/badge/Postman-Documentation-F86D22?style=for-the-badge&logo=postman" alt="Postman Documentation">
   </a>
