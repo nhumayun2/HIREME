@@ -4,6 +4,7 @@ import path from "path";
 import authRoutes from "./routes/authRoutes";
 import jobsRoutes from "./routes/jobsRoutes";
 import applicationRoutes from "./routes/applicationRoutes";
+import adminRoutes from "./routes/adminRoutes";
 
 const app = express();
 
@@ -21,6 +22,6 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobsRoutes);
 app.use("/api/applications", applicationRoutes);
-console.log("Check if all routes are working");
+app.use("/api/admin/users", adminRoutes);
 
 export default app;
