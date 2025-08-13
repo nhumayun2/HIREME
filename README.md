@@ -21,7 +21,7 @@
   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js">
   <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
   <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT">
-  <img src="https://img.ios/badge/Multer-white?style=for-the-badge&logo=multer" alt="Multer">
+  <img src="https://img.shields.io/badge/Multer-white?style=for-the-badge&logo=multer" alt="Multer">
   <img src="https://img.shields.io/badge/Zod-367CFF?style=for-the-badge&logo=zod&logoColor=white" alt="Zod">
 </p>
 
