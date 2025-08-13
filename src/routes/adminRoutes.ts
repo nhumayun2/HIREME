@@ -7,14 +7,16 @@ import {
   updateUser,
   deleteUser,
 } from "../controllers/adminController";
+import { getPlatformAnalytics } from "../controllers/analyticsController";
 
 const router = Router();
 
-// All routes in this file are for Admin only
 router.use(protect, authorize(UserRole.ADMIN));
 
 router.route("/").get(getAllUsers).post(createNewUser);
 
 router.route("/:id").put(updateUser).delete(deleteUser);
+
+router.route("/analytics").get(getPlatformAnalytics);
 
 export default router;
