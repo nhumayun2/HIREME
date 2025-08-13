@@ -105,7 +105,7 @@ All endpoints are prefixed with `/api`.
 ## ERD
 
 The ERD (Entity-Relationship Diagram) for the project can be found in the repository.
-![ERD Image](erd.png)
+![ERD Image](ERD\HireMe(ERD).jpg)
 
 ## Postman Documentation
 
