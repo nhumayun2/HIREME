@@ -4,6 +4,7 @@ import User from "../models/User";
 import { registerSchema, loginSchema } from "../utils/zodValidation";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
+import { UserRole } from "../utils/enums";
 
 const generateToken = (id: string, role: string) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET as string, {
@@ -14,7 +15,7 @@ const generateToken = (id: string, role: string) => {
 export const register = async (req: Request, res: Response) => {
   try {
     const validatedData = registerSchema.parse(req.body);
-    const { name, email, password, role } = validatedData;
+    const { name, email, password } = validatedData;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -23,7 +24,12 @@ export const register = async (req: Request, res: Response) => {
         .json({ success: false, message: "User already exists" });
     }
 
-    const newUser = await User.create({ name, email, password, role });
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+      role: UserRole.JOB_SEEKER,
+    });
     const token = generateToken(newUser._id.toString(), newUser.role);
 
     return res.status(201).json({
