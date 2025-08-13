@@ -30,13 +30,23 @@ export const createJob = async (req: Request, res: Response) => {
   }
 };
 
-// Get all jobs (for everyone)
+//test new filtering
 export const getJobs = async (req: Request, res: Response) => {
   try {
-    const jobs = await Job.find().populate("postedBy", "name company");
+    const { company, status } = req.query;
+    const filter: any = {};
+
+    if (company) {
+      filter.company = new RegExp(company as string, "i");
+    }
+    if (status) {
+      filter.status = status;
+    }
+
+    const jobs = await Job.find(filter).populate("postedBy", "name company");
     res.status(200).json({ success: true, count: jobs.length, jobs });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Server error" });
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 

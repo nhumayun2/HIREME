@@ -80,7 +80,7 @@ export const applyForJob = async (req: Request, res: Response) => {
   }
 };
 
-// Get applications for a specific job (Employees/Admins)
+// Get applications for a specific job (Employees/Admins) with optional filtering
 export const getApplicationsForJob = async (req: Request, res: Response) => {
   try {
     const job = await Job.findById(req.params.jobId);
@@ -98,9 +98,17 @@ export const getApplicationsForJob = async (req: Request, res: Response) => {
       });
     }
 
-    const applications = await Application.find({
-      job: req.params.jobId,
-    }).populate("jobSeeker", "name email");
+    const { status } = req.query;
+    const filter: any = { job: req.params.jobId };
+
+    if (status) {
+      filter.status = status;
+    }
+
+    const applications = await Application.find(filter).populate(
+      "jobSeeker",
+      "name email"
+    );
     res
       .status(200)
       .json({ success: true, count: applications.length, applications });
@@ -148,12 +156,10 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
       req.user!.role !== UserRole.ADMIN &&
       job.postedBy.toString() !== req.user!.id
     ) {
-      return res
-        .status(403)
-        .json({
-          success: false,
-          message: "Not authorized to update this application",
-        });
+      return res.status(403).json({
+        success: false,
+        message: "Not authorized to update this application",
+      });
     }
 
     // Explicitly check if the provided status is one of the enum values
@@ -166,13 +172,11 @@ export const updateApplicationStatus = async (req: Request, res: Response) => {
     application.status = status;
     await application.save();
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: `Application status updated to ${status}`,
-        application,
-      });
+    res.status(200).json({
+      success: true,
+      message: `Application status updated to ${status}`,
+      application,
+    });
   } catch (error) {
     console.error("Error updating application status:", error);
     return res.status(500).json({ success: false, message: "Server error" });
