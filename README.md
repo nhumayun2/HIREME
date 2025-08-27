@@ -54,7 +54,7 @@
 
 1.  **Clone the repository**:
     ```bash
-    git clone [https://github.com/](https://github.com/)[your-username]/hireme-backend.git
+    git clone https://github.com/nhumayun2/HIREME.git
     cd hireme-backend
     ```
 2.  **Install dependencies**:
