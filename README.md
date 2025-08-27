@@ -65,8 +65,6 @@
     -   Create a `.env` file and add your MongoDB URI and a JWT secret.
     ```env
     PORT=5000
-    MONGO_URI=mongodb+srv://admin:niloy12345admin@emihub-cluster.7xjkny.mongodb.net/?retryWrites=true&w=majority&appName=emihub-cluster
-    JWT_SECRET=YOUR_SECRET_KEY
     ```
 4.  **Run the application**:
     ```bash
